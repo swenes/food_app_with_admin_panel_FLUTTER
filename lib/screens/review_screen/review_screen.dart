@@ -44,8 +44,8 @@ class ReviewScreen extends StatelessWidget {
               reviewCartProvider.getReviewCartDataList[index];
           return Column(
             children: [
-              const SizedBox(height: 10),
               SingleItemReview(
+                isWishList: false,
                 onDelete: () {
                   showAlertDialog(context, reviewCartProvider, data);
                 },

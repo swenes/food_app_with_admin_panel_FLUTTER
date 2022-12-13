@@ -10,6 +10,7 @@ class ProductProvider extends ChangeNotifier {
   List<ProductModel> searchList = [];
 
   late ProductModel productModel;
+
   products(QueryDocumentSnapshot element) {
     productModel = ProductModel(
       productId: element.get('productId'),
@@ -37,6 +38,7 @@ class ProductProvider extends ChangeNotifier {
   List<ProductModel> get getfetchHerbsProductList {
     return herbsProductList;
   }
+
   ////////////////fresh products////////////////////
 
   fetchFreshProductData() async {
@@ -55,6 +57,7 @@ class ProductProvider extends ChangeNotifier {
   List<ProductModel> get getfetchFreshProductList {
     return freshProductList;
   }
+
   ////////////////root products////////////////////
 
   fetchRootProductData() async {

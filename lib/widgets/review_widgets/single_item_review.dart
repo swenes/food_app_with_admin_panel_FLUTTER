@@ -9,7 +9,7 @@ class SingleItemReview extends StatefulWidget {
   final String productId;
   final int productQuantity;
   final Function() onDelete;
-
+  final bool isWishList; // true ise counter gelmeyeecek
   const SingleItemReview(
       {super.key,
       required this.onDelete,
@@ -17,7 +17,8 @@ class SingleItemReview extends StatefulWidget {
       required this.productImage,
       required this.productPrice,
       required this.productId,
-      required this.productQuantity});
+      required this.productQuantity,
+      required this.isWishList});
 
   @override
   State<SingleItemReview> createState() => _SingleItemReviewState();
@@ -48,52 +49,59 @@ class _SingleItemReviewState extends State<SingleItemReview> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         widget.productName,
                         style: const TextStyle(
                             color: Constants.textColorDark,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold),
                       ),
+                      const SizedBox(height: 5),
                       Text(
                         '${widget.productPrice}\$',
                         style: const TextStyle(
                             color: Constants.textColor,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold),
                       ),
-                      const Text('50 Gram')
+                      const SizedBox(height: 5),
+                      const Text(
+                        '50 Gram',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          color: Constants.textColorDark,
+                        ),
+                      )
                     ],
                   ),
                 ],
               ),
             ),
             Expanded(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      widget.onDelete();
-                    },
-                    icon: const Icon(
-                      Icons.delete_outlined,
-                      size: 30,
-                    )),
-                Container(
-                    height: 30,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Constants.textColor),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Counter(
-                        productName: widget.productName,
-                        productImage: widget.productImage,
-                        productId: widget.productId,
-                        productPrice: widget.productPrice))
-              ],
-            )),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        widget.onDelete();
+                      },
+                      icon: Icon(
+                        Icons.delete_outlined,
+                        size: widget.isWishList ? 40 : 30,
+                      )),
+                  widget.isWishList
+                      ? const SizedBox.shrink()
+                      : Counter(
+                          isProductOverview: true,
+                          productName: widget.productName,
+                          productImage: widget.productImage,
+                          productId: widget.productId,
+                          productPrice: widget.productPrice)
+                ],
+              ),
+            ),
           ],
         ),
       ),

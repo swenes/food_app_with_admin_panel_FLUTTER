@@ -99,6 +99,7 @@ class _SingleItemSearchState extends State<SingleItemSearch> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 32),
                 child: Counter(
+                    isProductOverview: true,
                     productName: widget.productName,
                     productImage: widget.productImage,
                     productId: widget.productId,

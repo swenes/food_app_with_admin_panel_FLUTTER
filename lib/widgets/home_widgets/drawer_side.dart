@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_ytm/screens/home_screen/home_screen.dart';
 import 'package:food_app_ytm/screens/profile_screen/profile_screen.dart';
 import 'package:food_app_ytm/screens/review_screen/review_screen.dart';
+import 'package:food_app_ytm/screens/wish_list_screen/wish_list_screen.dart';
 
 import '../../utils/constants.dart';
 import 'drawer_list_tile.dart';
@@ -80,7 +81,9 @@ class DrawerSide extends StatelessWidget {
             ),
             listTileDrawer(Icons.notifications_outlined, 'Notification', () {}),
             listTileDrawer(Icons.star_outline, 'Raiting & Review', () {}),
-            listTileDrawer(Icons.favorite_border_outlined, 'Wishlist', () {}),
+            listTileDrawer(Icons.favorite_border_outlined, 'Wishlist', () {
+              goToNav(context, WishListScreen());
+            }),
             listTileDrawer(Icons.copy_all_outlined, 'Raise a Complaint', () {}),
             listTileDrawer(Icons.format_quote_outlined, 'FAQs', () {}),
             Padding(

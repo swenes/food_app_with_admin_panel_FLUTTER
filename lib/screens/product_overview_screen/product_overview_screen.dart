@@ -1,5 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app_ytm/providers/wish_list_provider.dart';
+import 'package:food_app_ytm/screens/review_screen/review_screen.dart';
 import 'package:food_app_ytm/utils/constants.dart';
+import 'package:food_app_ytm/widgets/home_widgets/counter.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/product_widgets/bottom_nav_widget.dart';
 
@@ -8,13 +14,16 @@ enum SinginCharacter { fill, outline }
 class ProductOverivew extends StatefulWidget {
   final String productName;
   final String productImage;
+  final String productId;
   final int productPrice;
 
-  const ProductOverivew(
-      {super.key,
-      required this.productName,
-      required this.productImage,
-      required this.productPrice});
+  const ProductOverivew({
+    super.key,
+    required this.productName,
+    required this.productImage,
+    required this.productPrice,
+    required this.productId,
+  });
 
   @override
   State<ProductOverivew> createState() => _ProductOverivewState();
@@ -22,9 +31,36 @@ class ProductOverivew extends StatefulWidget {
 
 class _ProductOverivewState extends State<ProductOverivew> {
   SinginCharacter _character = SinginCharacter.fill;
+  bool wishListBool = false;
+
+  bool getWishtListBool() {
+    FirebaseFirestore.instance
+        .collection("WishList")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("YourWishList")
+        .doc(widget.productId)
+        .get()
+        .then((value) => {
+              if (mounted)
+                {
+                  if (value.exists)
+                    {
+                      setState(
+                        () {
+                          wishListBool = value.get("wishList");
+                        },
+                      ),
+                    }
+                }
+            });
+    return wishListBool;
+  }
 
   @override
   Widget build(BuildContext context) {
+    WishListProvider wishListProvider = Provider.of(context);
+    getWishtListBool();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -35,17 +71,46 @@ class _ProductOverivewState extends State<ProductOverivew> {
       bottomNavigationBar: Row(
         children: [
           bottomNavigationBar(
-              iconColor: Colors.white,
-              backgroundColor: Colors.black87,
-              titleColor: Colors.white,
-              title: 'Add to WishList',
-              iconData: Icons.favorite_border_outlined),
+            iconColor: wishListBool ? Colors.red : Colors.white,
+            backgroundColor: Colors.black87,
+            titleColor: Colors.white,
+            title: 'Add to Wish List',
+            iconData:
+                wishListBool ? Icons.favorite : Icons.favorite_border_outlined,
+            onTap: () {
+              setState(() {
+                wishListBool = !wishListBool;
+              });
+              if (wishListBool == true) {
+                wishListProvider.addWishListData(
+                  wishListId: widget.productId,
+                  wishListImage: widget.productImage,
+                  wishListName: widget.productName,
+                  wishListPrice: widget.productPrice,
+                  wishListQuantity: 2,
+                );
+              } else {
+                wishListProvider.deleteWishtList(widget.productId);
+              }
+            },
+          ),
           bottomNavigationBar(
-              iconColor: Colors.black,
-              backgroundColor: Constants.appBarColor,
-              titleColor: Colors.black,
-              title: 'Go to Cart',
-              iconData: Icons.shopping_bag_outlined)
+            iconColor: Colors.black,
+            backgroundColor: Constants.appBarColor,
+            titleColor: Colors.black,
+            title: 'Go to Cart',
+            iconData: Icons.shopping_bag_outlined,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ReviewScreen();
+                  },
+                ),
+              );
+            },
+          )
         ],
       ),
       body: Column(
@@ -119,34 +184,13 @@ class _ProductOverivewState extends State<ProductOverivew> {
                           r'$50',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2,
-                              color: Colors.grey,
-                            ),
-                            borderRadius: BorderRadiusDirectional.circular(30),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(
-                                Icons.add,
-                                size: 17,
-                                color: Constants.appBarColor,
-                              ),
-                              Text(
-                                'ADD',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Constants.appBarColor),
-                              )
-                            ],
-                          ),
-                        ),
+                        Counter(
+                          isProductOverview: true,
+                          productId: widget.productId,
+                          productImage: widget.productImage,
+                          productName: widget.productName,
+                          productPrice: widget.productPrice,
+                        )
                       ],
                     ),
                   )

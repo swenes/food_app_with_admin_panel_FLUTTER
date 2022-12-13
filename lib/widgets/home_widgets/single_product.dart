@@ -98,7 +98,6 @@ class SingleProducts extends StatelessWidget {
                                 Expanded(
                                   flex: 40,
                                   child: Counter(
-                                    isHomeScreen: true,
                                     productId: productId,
                                     productName: productName,
                                     productImage: productImage,

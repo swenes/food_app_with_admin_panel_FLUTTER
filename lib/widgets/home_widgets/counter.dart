@@ -13,11 +13,11 @@ class Counter extends StatefulWidget {
   String productImage;
   String productId;
   int productPrice;
-  bool isHomeScreen;
+  bool isProductOverview;
 
   Counter({
     super.key,
-    this.isHomeScreen = true,
+    this.isProductOverview = false,
     required this.productName,
     required this.productImage,
     required this.productId,
@@ -33,12 +33,13 @@ class _CounterState extends State<Counter> {
   int count = 1;
   @override
   Widget build(BuildContext context) {
-    getAddAndQuantity();
     ReviewCartProvider reviewCartProvider = Provider.of(context);
+    getAddAndQuantity();
 
     return InkWell(
       onTap: () {},
       child: Container(
+          width: widget.isProductOverview ? 80 : 40,
           height: 30,
           decoration: BoxDecoration(
               border: Border.all(color: Constants.textColor),
@@ -115,20 +116,25 @@ class _CounterState extends State<Counter> {
                     );
                   },
                   child: SizedBox(
-                    height: 30,
+                    width: widget.isProductOverview ? 80 : 40,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.add,
                           color: Constants.appBarColor,
-                          size: 17,
+                          size: widget.isProductOverview ? 19 : 17,
                         ),
                         Center(
                           child: Text(
                             'ADD',
                             style: TextStyle(
-                                color: Constants.appBarColor, fontSize: 15),
+                              color: Constants.appBarColor,
+                              fontSize: widget.isProductOverview ? 17 : 15,
+                              // fontWeight: widget.isProductOverview
+                              //     ? FontWeight.bold
+                              //     : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ],
@@ -147,7 +153,7 @@ class _CounterState extends State<Counter> {
         .get()
         .then(
           (value) => {
-            if (this.mounted)
+            if (mounted)
               {
                 if (value.exists)
                   {
