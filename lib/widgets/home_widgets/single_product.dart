@@ -68,7 +68,7 @@ class SingleProducts extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   flex: 60,
@@ -94,12 +94,16 @@ class SingleProducts extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 5),
-                                Counter(
-                                  productId: productId,
-                                  productName: productName,
-                                  productImage: productImage,
-                                  productPrice: productPrice,
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  flex: 40,
+                                  child: Counter(
+                                    isHomeScreen: true,
+                                    productId: productId,
+                                    productName: productName,
+                                    productImage: productImage,
+                                    productPrice: productPrice,
+                                  ),
                                 ),
                               ],
                             ),

@@ -13,9 +13,11 @@ class Counter extends StatefulWidget {
   String productImage;
   String productId;
   int productPrice;
+  bool isHomeScreen;
 
   Counter({
     super.key,
+    this.isHomeScreen = true,
     required this.productName,
     required this.productImage,
     required this.productId,
@@ -34,56 +36,29 @@ class _CounterState extends State<Counter> {
     getAddAndQuantity();
     ReviewCartProvider reviewCartProvider = Provider.of(context);
 
-    return Expanded(
-      flex: 40,
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-            height: 30,
-            decoration: BoxDecoration(
-                border: Border.all(color: Constants.textColor),
-                borderRadius: BorderRadius.circular(10)),
-            child: isTrue
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          if (count == 1) {
-                            setState(() {
-                              isTrue = false;
-                            });
-
-                            reviewCartProvider
-                                .reviewCartDataDelete(widget.productId);
-                          } else if (count > 1) {
-                            setState(() {
-                              count--;
-                            });
-                            reviewCartProvider.updateReviewCartData(
-                              cartId: widget.productId,
-                              cartName: widget.productName,
-                              cartImage: widget.productImage,
-                              cartQuantity: count,
-                              cartPrice: widget.productPrice,
-                            );
-                          }
-                        },
-                        child: const Icon(
-                          Icons.remove,
-                          size: 15,
-                          color: Constants.appBarColor,
-                        ),
-                      ),
-                      Text('$count',
-                          style: const TextStyle(
-                              fontSize: 15,
-                              color: Constants.textColor,
-                              fontWeight: FontWeight.bold)),
-                      InkWell(
-                        onTap: () {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+          height: 30,
+          decoration: BoxDecoration(
+              border: Border.all(color: Constants.textColor),
+              borderRadius: BorderRadius.circular(10)),
+          child: isTrue
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        if (count == 1) {
                           setState(() {
-                            count++;
+                            isTrue = false;
+                          });
+
+                          reviewCartProvider
+                              .reviewCartDataDelete(widget.productId);
+                        } else if (count > 1) {
+                          setState(() {
+                            count--;
                           });
                           reviewCartProvider.updateReviewCartData(
                             cartId: widget.productId,
@@ -92,28 +67,55 @@ class _CounterState extends State<Counter> {
                             cartQuantity: count,
                             cartPrice: widget.productPrice,
                           );
-                        },
-                        child: const Icon(
-                          Icons.add,
-                          size: 15,
-                          color: Color(0XFFD0B84C),
-                        ),
+                        }
+                      },
+                      child: const Icon(
+                        Icons.remove,
+                        size: 15,
+                        color: Constants.appBarColor,
                       ),
-                    ],
-                  )
-                : InkWell(
-                    onTap: () {
-                      setState(() {
-                        isTrue = true;
-                      });
-                      reviewCartProvider.addReviewCartData(
-                        cartId: widget.productId,
-                        cartName: widget.productName,
-                        cartImage: widget.productImage,
-                        cartQuantity: count,
-                        cartPrice: widget.productPrice,
-                      );
-                    },
+                    ),
+                    Text('$count',
+                        style: const TextStyle(
+                            fontSize: 15,
+                            color: Constants.textColor,
+                            fontWeight: FontWeight.bold)),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          count++;
+                        });
+                        reviewCartProvider.updateReviewCartData(
+                          cartId: widget.productId,
+                          cartName: widget.productName,
+                          cartImage: widget.productImage,
+                          cartQuantity: count,
+                          cartPrice: widget.productPrice,
+                        );
+                      },
+                      child: const Icon(
+                        Icons.add,
+                        size: 15,
+                        color: Color(0XFFD0B84C),
+                      ),
+                    ),
+                  ],
+                )
+              : InkWell(
+                  onTap: () {
+                    setState(() {
+                      isTrue = true;
+                    });
+                    reviewCartProvider.addReviewCartData(
+                      cartId: widget.productId,
+                      cartName: widget.productName,
+                      cartImage: widget.productImage,
+                      cartQuantity: count,
+                      cartPrice: widget.productPrice,
+                    );
+                  },
+                  child: SizedBox(
+                    height: 30,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
@@ -122,20 +124,17 @@ class _CounterState extends State<Counter> {
                           color: Constants.appBarColor,
                           size: 17,
                         ),
-                        SizedBox(
-                          height: 30,
-                          child: Center(
-                            child: Text(
-                              'ADD',
-                              style: TextStyle(
-                                  color: Constants.appBarColor, fontSize: 15),
-                            ),
+                        Center(
+                          child: Text(
+                            'ADD',
+                            style: TextStyle(
+                                color: Constants.appBarColor, fontSize: 15),
                           ),
                         ),
                       ],
                     ),
-                  )),
-      ),
+                  ),
+                )),
     );
   }
 
