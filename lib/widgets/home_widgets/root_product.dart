@@ -24,7 +24,7 @@ class BuildRootProduct extends StatelessWidget {
               productImage: rootProductData.productImage,
               productPrice: rootProductData.productPrice,
               ontap: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductOverivew(
@@ -32,7 +32,8 @@ class BuildRootProduct extends StatelessWidget {
                           productName: rootProductData.productName,
                           productImage: rootProductData.productImage,
                           productPrice: rootProductData.productPrice),
-                    ));
+                    ),
+                    (r) => false);
               });
         }).toList(),
       ),

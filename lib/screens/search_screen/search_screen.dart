@@ -1,6 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/models/product_model.dart';
+import 'package:food_app_ytm/screens/home_screen/home_screen.dart';
 import 'package:food_app_ytm/widgets/search_widgets/single_item_search.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 
@@ -79,7 +80,12 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               prefixIcon: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (r) => false);
                   },
                   icon: const Icon(Icons.arrow_back_ios_new_outlined)),
               suffixIcon: const Icon(Icons.search)),

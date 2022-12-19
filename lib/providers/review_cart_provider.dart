@@ -61,7 +61,7 @@ class ReviewCartProvider with ChangeNotifier {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection("YourReviewCart")
         .get();
-    reviewCartValue.docs.forEach((element) {
+    for (var element in reviewCartValue.docs) {
       ReviewCardModel reviewCartModel = ReviewCardModel(
         cartId: element.get("cartId"),
         cartImage: element.get("cartImage"),
@@ -70,7 +70,7 @@ class ReviewCartProvider with ChangeNotifier {
         cartQuantity: element.get("cartQuantity"),
       );
       newList.add(reviewCartModel);
-    });
+    }
     reviewCartDataList = newList;
     notifyListeners();
   }

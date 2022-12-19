@@ -5,12 +5,12 @@ import '../../providers/product_provider.dart';
 import '../../screens/product_overview_screen/product_overview_screen.dart';
 
 class BuildFreshProduct extends StatelessWidget {
+  final ProductProvider productProvider;
+
   const BuildFreshProduct({
     Key? key,
     required this.productProvider,
   }) : super(key: key);
-
-  final ProductProvider productProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class BuildFreshProduct extends StatelessWidget {
               productImage: freshProductData.productImage,
               productPrice: freshProductData.productPrice,
               ontap: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductOverivew(
@@ -33,7 +33,8 @@ class BuildFreshProduct extends StatelessWidget {
                           productName: freshProductData.productName,
                           productImage: freshProductData.productImage,
                           productPrice: freshProductData.productPrice),
-                    ));
+                    ),
+                    (r) => false);
               });
         }).toList(),
       ),

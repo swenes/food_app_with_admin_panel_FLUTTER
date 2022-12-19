@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/models/product_model.dart';
-import 'package:food_app_ytm/models/review_cart_model.dart';
-import 'package:food_app_ytm/providers/review_cart_provider.dart';
 import 'package:food_app_ytm/providers/wish_list_provider.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/review_widgets/single_item_review.dart';
 import 'package:provider/provider.dart';
 
 class WishListScreen extends StatefulWidget {
-  WishListScreen({super.key});
+  const WishListScreen({super.key});
 
   @override
   State<WishListScreen> createState() => _WishListScreenState();

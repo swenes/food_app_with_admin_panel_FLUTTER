@@ -29,7 +29,7 @@ class Counter extends StatefulWidget {
 }
 
 class _CounterState extends State<Counter> {
-  bool isTrue = false;
+  bool isTrue = false; // add ile sayaç arasındaki değiş tokuşu
   int count = 1;
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/providers/product_provider.dart';
+import 'package:food_app_ytm/screens/review_screen/review_screen.dart';
 import 'package:food_app_ytm/screens/search_screen/search_screen.dart';
 import 'package:provider/provider.dart';
 import '../../utils/constants.dart';
@@ -28,7 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    productProvider = Provider.of(context);
+    ProductProvider productProvider = Provider.of(context);
+
     return Scaffold(
       backgroundColor: Constants.scaffoldBG,
       drawer: const DrawerSide(),
@@ -57,21 +59,23 @@ class _HomeScreenState extends State<HomeScreen> {
             _buildEggBag(),
             const SizedBox(height: 20),
             _buildViewAllText(
-                'Herbs Seasonings',
-                SearchScreen(
-                    searchList: productProvider.getfetchHerbsProductList)),
+              'Herbs Seasonings',
+              SearchScreen(
+                  searchList: productProvider.getfetchHerbsProductList),
+            ),
             BuildHerbsProduct(productProvider: productProvider),
             const SizedBox(height: 10),
             _buildViewAllText(
-                'Fresh Fruits',
-                SearchScreen(
-                    searchList: productProvider.getfetchFreshProductList)),
+              'Fresh Fruits',
+              SearchScreen(
+                  searchList: productProvider.getfetchFreshProductList),
+            ),
             BuildFreshProduct(productProvider: productProvider),
             const SizedBox(height: 10),
             _buildViewAllText(
-                'Root Vegetables',
-                SearchScreen(
-                    searchList: productProvider.getfetchRootProductList)),
+              'Root Vegetables',
+              SearchScreen(searchList: productProvider.getfetchRootProductList),
+            ),
             BuildRootProduct(productProvider: productProvider),
           ],
         ),
@@ -165,20 +169,28 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   CircleAvatar _buildCircleShop(BuildContext context) {
-    return const CircleAvatar(
-      radius: 16,
-      backgroundColor: Constants.circleAvatarColor,
-      child: Icon(
-        Icons.shopping_bag_outlined,
-        size: 20,
-        color: Colors.black,
-      ),
-    );
+    return CircleAvatar(
+        radius: 18,
+        backgroundColor: Constants.circleAvatarColor,
+        child: IconButton(
+          icon: const Icon(
+            Icons.shopping_bag_outlined,
+            size: 20,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return ReviewScreen();
+              },
+            ));
+          },
+        ));
   }
 
   CircleAvatar _buildCircleSearch(BuildContext context) {
     return CircleAvatar(
-      radius: 16,
+      radius: 18,
       backgroundColor: Constants.circleAvatarColor,
       child: IconButton(
           onPressed: () {

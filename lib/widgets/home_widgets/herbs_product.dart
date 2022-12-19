@@ -24,7 +24,7 @@ class BuildHerbsProduct extends StatelessWidget {
               productImage: herbsProductData.productImage,
               productPrice: herbsProductData.productPrice,
               ontap: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductOverivew(
@@ -32,7 +32,8 @@ class BuildHerbsProduct extends StatelessWidget {
                           productName: herbsProductData.productName,
                           productImage: herbsProductData.productImage,
                           productPrice: herbsProductData.productPrice),
-                    ));
+                    ),
+                    (r) => false);
               });
         }).toList(),
       ),

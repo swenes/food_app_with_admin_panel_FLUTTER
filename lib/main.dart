@@ -4,7 +4,7 @@ import 'package:food_app_ytm/providers/product_provider.dart';
 import 'package:food_app_ytm/providers/review_cart_provider.dart';
 import 'package:food_app_ytm/providers/user_provider.dart';
 import 'package:food_app_ytm/providers/wish_list_provider.dart';
-import 'package:food_app_ytm/screens/home_screen/home_screen.dart';
+import 'package:food_app_ytm/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                 iconTheme: IconThemeData(color: Colors.black)),
             scaffoldBackgroundColor: Constants.scaffoldBG),
         debugShowCheckedModeBanner: false,
-        home: const HomeScreen(),
+        home: const SignIn(),
       ),
     );
   }

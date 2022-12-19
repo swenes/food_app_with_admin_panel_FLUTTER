@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/providers/wish_list_provider.dart';
+import 'package:food_app_ytm/screens/home_screen/home_screen.dart';
 import 'package:food_app_ytm/screens/review_screen/review_screen.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/home_widgets/counter.dart';
@@ -63,6 +64,18 @@ class _ProductOverivewState extends State<ProductOverivew> {
 
     return Scaffold(
       appBar: AppBar(
+        // ignore: prefer_const_constructors
+
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return const HomeScreen();
+                },
+              ));
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+
         title: const Text(
           'Product Overview',
           style: TextStyle(color: Colors.black),

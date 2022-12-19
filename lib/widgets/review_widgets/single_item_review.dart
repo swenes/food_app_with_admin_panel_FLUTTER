@@ -88,8 +88,11 @@ class _SingleItemReviewState extends State<SingleItemReview> {
                         widget.onDelete();
                       },
                       icon: Icon(
-                        Icons.delete_outlined,
+                        widget.isWishList
+                            ? Icons.favorite
+                            : Icons.delete_outlined,
                         size: widget.isWishList ? 40 : 30,
+                        color: widget.isWishList ? Colors.red : Colors.black,
                       )),
                   widget.isWishList
                       ? const SizedBox.shrink()

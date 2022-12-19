@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_ytm/widgets/home_widgets/drawer_side.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 
 import '../../widgets/profile_widgets/list_tile_profilewidget.dart';
@@ -18,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         elevation: 0.0,
       ),
-      drawer: const DrawerSide(),
+      // drawer: const DrawerSide(),
       body: Stack(children: [
         Column(
           children: [

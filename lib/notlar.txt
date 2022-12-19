@@ -1,0 +1,2 @@
+user çalışmıyor
+counter düzgün (home review cart product overview veri akışı düzgün deil).

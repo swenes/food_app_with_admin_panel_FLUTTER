@@ -8,6 +8,7 @@ class SingleProducts extends StatelessWidget {
   final String productImage;
   final int productPrice;
   final Function()? ontap;
+
   const SingleProducts({
     Key? key,
     required this.productId,
@@ -72,25 +73,62 @@ class SingleProducts extends StatelessWidget {
                               children: [
                                 Expanded(
                                   flex: 60,
-                                  child: Container(
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Constants.textColor),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: const [
-                                        Text(
-                                          '50 Gr',
-                                          style: TextStyle(
-                                              fontSize: 13,
+                                  child: InkWell(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                ListTile(
+                                                  title: const Text('50 Gram'),
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                ListTile(
+                                                  title: const Text('100 Gram'),
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                ListTile(
+                                                  title: const Text('500 Gram'),
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                ListTile(
+                                                  title: const Text('1 Kilo'),
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    child: Container(
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
                                               color: Constants.textColor),
-                                        ),
-                                        Icon(Icons.arrow_drop_down)
-                                      ],
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: const [
+                                          Text(
+                                            '50 Gr',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color: Constants.textColor),
+                                          ),
+                                          Icon(Icons.arrow_drop_down)
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

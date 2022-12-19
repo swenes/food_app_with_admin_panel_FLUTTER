@@ -5,6 +5,7 @@ import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/review_widgets/single_item_review.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ReviewScreen extends StatelessWidget {
   late ReviewCartProvider reviewCartProvider;
 
