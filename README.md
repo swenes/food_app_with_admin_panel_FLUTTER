@@ -1,6 +1,6 @@
 Provider was used for State Management, Firebase was used for database.
 
-• You can log in with a Google account, Apple ID or e-mail.
+• You can log in with a Google account, Apple ID or e-mail.\n
 • A profile can be created as a seller or a customer.
 • The seller can add products to the system and make updates.
 • Address selection can be made on the map with Google maps.
