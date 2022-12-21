@@ -15,6 +15,7 @@ class ProductProvider extends ChangeNotifier {
     productModel = ProductModel(
       productId: element.get('productId'),
       productName: element.get('productName'),
+      productUnit: element.get('productUnit'),
       productImage: element.get('productImage'),
       productPrice: element.get('productPrice'),
     );

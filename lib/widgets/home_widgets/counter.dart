@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_ytm/providers/review_cart_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/product_model.dart';
 import '../../utils/constants.dart';
 
 class Counter extends StatefulWidget {
@@ -14,10 +15,11 @@ class Counter extends StatefulWidget {
   String productId;
   int productPrice;
   bool isProductOverview;
-
+  var productUnit;
   Counter({
     super.key,
     this.isProductOverview = false,
+    required this.productUnit,
     required this.productName,
     required this.productImage,
     required this.productId,
@@ -108,6 +110,7 @@ class _CounterState extends State<Counter> {
                       isTrue = true;
                     });
                     reviewCartProvider.addReviewCartData(
+                      cartUnit: widget.productUnit,
                       cartId: widget.productId,
                       cartName: widget.productName,
                       cartImage: widget.productImage,

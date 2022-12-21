@@ -6,6 +6,7 @@ import 'package:food_app_ytm/screens/home_screen/home_screen.dart';
 import 'package:food_app_ytm/screens/review_screen/review_screen.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/home_widgets/counter.dart';
+import 'package:food_app_ytm/widgets/home_widgets/single_product.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/product_widgets/bottom_nav_widget.dart';
@@ -193,11 +194,12 @@ class _ProductOverivewState extends State<ProductOverivew> {
                             ),
                           ],
                         ),
-                        const Text(
-                          r'$50',
+                        Text(
+                          '$unitData',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Counter(
+                          productUnit: unitData,
                           isProductOverview: true,
                           productId: widget.productId,
                           productImage: widget.productImage,

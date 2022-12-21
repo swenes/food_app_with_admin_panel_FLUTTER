@@ -24,6 +24,7 @@ class BuildFreshProduct extends StatelessWidget {
               productName: freshProductData.productName,
               productImage: freshProductData.productImage,
               productPrice: freshProductData.productPrice,
+              productUnit: freshProductData,
               ontap: () {
                 Navigator.pushAndRemoveUntil(
                     context,

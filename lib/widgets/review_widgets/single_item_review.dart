@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/home_widgets/counter.dart';
+import 'package:food_app_ytm/widgets/home_widgets/product_unit.dart';
+import 'package:food_app_ytm/widgets/home_widgets/single_product.dart';
 
 class SingleItemReview extends StatefulWidget {
   final String productName;
@@ -66,14 +68,14 @@ class _SingleItemReviewState extends State<SingleItemReview> {
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 5),
-                      const Text(
-                        '50 Gram',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                          color: Constants.textColorDark,
-                        ),
-                      )
+                      // Text(
+                      //   '$unitData', // unit data buraya nasıl gelebildi bilmiyorum. araştır
+                      //   style: const TextStyle(
+                      //     fontSize: 13,
+                      //     fontWeight: FontWeight.w500,
+                      //     color: Constants.textColorDark,
+                      //   ),
+                      // )
                     ],
                   ),
                 ],
@@ -97,6 +99,7 @@ class _SingleItemReviewState extends State<SingleItemReview> {
                   widget.isWishList
                       ? const SizedBox.shrink()
                       : Counter(
+                          productUnit: unitData,
                           isProductOverview: true,
                           productName: widget.productName,
                           productImage: widget.productImage,

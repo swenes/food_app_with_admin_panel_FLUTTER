@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/home_widgets/counter.dart';
+import 'package:food_app_ytm/widgets/home_widgets/single_product.dart';
 
 // ignore: must_be_immutable
 class SingleItemSearch extends StatefulWidget {
@@ -99,6 +100,7 @@ class _SingleItemSearchState extends State<SingleItemSearch> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 32),
                 child: Counter(
+                    productUnit: unitData,
                     isProductOverview: true,
                     productName: widget.productName,
                     productImage: widget.productImage,

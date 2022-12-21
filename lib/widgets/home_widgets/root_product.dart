@@ -23,6 +23,7 @@ class BuildRootProduct extends StatelessWidget {
               productName: rootProductData.productName,
               productImage: rootProductData.productImage,
               productPrice: rootProductData.productPrice,
+              productUnit: rootProductData,
               ontap: () {
                 Navigator.pushAndRemoveUntil(
                     context,
