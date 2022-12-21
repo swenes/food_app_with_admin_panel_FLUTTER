@@ -82,12 +82,12 @@ class DrawerSide extends StatelessWidget {
             listTileDrawer(Icons.notifications_outlined, 'Notification', () {}),
             listTileDrawer(Icons.star_outline, 'Raiting & Review', () {}),
             listTileDrawer(Icons.favorite_border_outlined, 'Wishlist', () {
-              goToNav(context, WishListScreen());
+              goToNav(context, const WishListScreen());
             }),
             listTileDrawer(Icons.copy_all_outlined, 'Raise a Complaint', () {}),
             listTileDrawer(Icons.format_quote_outlined, 'FAQs', () {}),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

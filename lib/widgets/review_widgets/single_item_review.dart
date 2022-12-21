@@ -56,7 +56,7 @@ class _SingleItemReviewState extends State<SingleItemReview> {
                         widget.productName,
                         style: const TextStyle(
                             color: Constants.textColorDark,
-                            fontSize: 17,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 5),
@@ -68,14 +68,13 @@ class _SingleItemReviewState extends State<SingleItemReview> {
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 5),
-                      // Text(
-                      //   '$unitData', // unit data buraya nasıl gelebildi bilmiyorum. araştır
-                      //   style: const TextStyle(
-                      //     fontSize: 13,
-                      //     fontWeight: FontWeight.w500,
-                      //     color: Constants.textColorDark,
-                      //   ),
-                      // )
+                      Text(
+                        '$unitData', // unit data buraya nasıl gelebildi bilmiyorum. araştır
+                        style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Constants.appBarColor),
+                      )
                     ],
                   ),
                 ],

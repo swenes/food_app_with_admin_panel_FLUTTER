@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/models/review_cart_model.dart';
 import 'package:food_app_ytm/providers/review_cart_provider.dart';
+import 'package:food_app_ytm/screens/check_out/delivery_details.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/review_widgets/single_item_review.dart';
 import 'package:provider/provider.dart';
@@ -23,14 +24,23 @@ class ReviewScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: ListTile(
-        title: const Text('Total Amount'),
+        title: const Text(
+          'Total Amount',
+          style: TextStyle(fontSize: 17),
+        ),
         subtitle: Text(
-          '\$170.00',
-          style: TextStyle(color: Colors.green.shade900),
+          '\$ ${reviewCartProvider.getTotalPrice()}',
+          style: TextStyle(fontSize: 20, color: Colors.green.shade900),
         ),
         trailing: MaterialButton(
           minWidth: 160,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const DeliveryDetails(),
+              ),
+            );
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),

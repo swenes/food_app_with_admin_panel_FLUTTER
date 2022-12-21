@@ -94,6 +94,7 @@ class _SingleProductsState extends State<SingleProducts> {
                                 ProductUnit(
                                     onTap: () {
                                       showModalBottomSheet(
+                                        // debugta parent widget kullanımı hatası veriyor halledilecek.
                                         context: context,
                                         builder: (context) {
                                           return Column(
@@ -108,7 +109,7 @@ class _SingleProductsState extends State<SingleProducts> {
                                                 ),
                                                 child: Column(
                                                   children: [
-                                                    InkWell(
+                                                    GestureDetector(
                                                       onTap: () async {
                                                         setState(() {
                                                           unitData = data;
