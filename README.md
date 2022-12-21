@@ -1,16 +1,8 @@
-# food_app_ytm
+Provider was used for State Management, Firebase was used for database.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+• You can log in with a Google account, Apple ID or e-mail.  
+• A profile can be created as a seller or a customer.  
+• The seller can add products to the system and make updates.  
+• Address selection can be made on the map with Google maps.  
+• After adding the address of the customer, he can add the desired product to his cart and place an order.  
+• Google payments is used for the payment system.
