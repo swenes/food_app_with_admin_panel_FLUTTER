@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_ytm/screens/check_out/add_delivery_adress.dart';
 import 'package:food_app_ytm/screens/check_out/single_delivery_item.dart';
 
 import '../../utils/constants.dart';
@@ -25,7 +26,13 @@ class DeliveryDetails extends StatelessWidget {
         height: 50,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const AddDeliveryAdress(),
+              ),
+            );
+          },
           color: Constants.appBarColor,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

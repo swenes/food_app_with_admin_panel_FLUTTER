@@ -5,6 +5,7 @@ import 'package:food_app_ytm/screens/check_out/delivery_details.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/review_widgets/single_item_review.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 // ignore: must_be_immutable
 class ReviewScreen extends StatelessWidget {
@@ -35,6 +36,9 @@ class ReviewScreen extends StatelessWidget {
         trailing: MaterialButton(
           minWidth: 160,
           onPressed: () {
+            if (reviewCartProvider.getReviewCartDataList.isEmpty) {
+              Fluttertoast.showToast(msg: 'No Cart Data Found');
+            }
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const DeliveryDetails(),
