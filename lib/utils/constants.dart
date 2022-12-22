@@ -10,4 +10,5 @@ class Constants {
   //Text
   static const textColor = Colors.black54;
   static const textColorDark = Colors.black87;
+  static const addDeliverTextStyle = TextStyle(fontWeight: FontWeight.bold);
 }

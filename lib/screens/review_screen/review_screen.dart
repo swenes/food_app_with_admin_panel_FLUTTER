@@ -7,6 +7,8 @@ import 'package:food_app_ytm/widgets/review_widgets/single_item_review.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../home_screen/home_screen.dart';
+
 // ignore: must_be_immutable
 class ReviewScreen extends StatelessWidget {
   late ReviewCartProvider reviewCartProvider;
@@ -18,6 +20,15 @@ class ReviewScreen extends StatelessWidget {
     reviewCartProvider.getReviewCartData();
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return const HomeScreen();
+                },
+              ));
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         elevation: 0,
         title: const Text(
           'Review Cart',

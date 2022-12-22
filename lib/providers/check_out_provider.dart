@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:location/location.dart';
 
 class CheckOutProvider with ChangeNotifier {
   TextEditingController firstName = TextEditingController();
@@ -13,9 +14,10 @@ class CheckOutProvider with ChangeNotifier {
   TextEditingController city = TextEditingController();
   TextEditingController area = TextEditingController();
   TextEditingController pincode = TextEditingController();
-  TextEditingController setLocation = TextEditingController();
 
+  late LocationData setLocation;
   bool isLoading = false;
+
   void validator(context, myType) async {
     if (firstName.text.isEmpty) {
       Fluttertoast.showToast(msg: "firstname is empty");
@@ -35,6 +37,8 @@ class CheckOutProvider with ChangeNotifier {
       Fluttertoast.showToast(msg: "aera is empty");
     } else if (pincode.text.isEmpty) {
       Fluttertoast.showToast(msg: "pincode is empty");
+    } else if (setLocation.latitude == null) {
+      Fluttertoast.showToast(msg: "Set location is empty");
     } else {
       isLoading = true;
       notifyListeners();
@@ -52,6 +56,8 @@ class CheckOutProvider with ChangeNotifier {
         "aera": area.text,
         "pincode": pincode.text,
         "addressType": myType.toString(),
+        "latitude": setLocation.latitude,
+        "longitude": setLocation.longitude
       }).then((value) async {
         isLoading = false;
         notifyListeners();

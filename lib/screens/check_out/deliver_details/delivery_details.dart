@@ -68,7 +68,10 @@ class DeliveryDetails extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           child: adresses.isEmpty
               ? const Text('Add New Adress')
-              : const Text('Payment Summary'),
+              : const Text(
+                  'Payment Summary',
+                  style: TextStyle(fontSize: 18),
+                ),
         ),
       ),
       body: ListView(

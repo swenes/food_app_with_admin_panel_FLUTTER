@@ -1,2 +1,3 @@
-user çalışmıyor
-counter düzgün (home review cart product overview veri akışı düzgün deil).
+uygulama ilk açıldığında cartUnit null dönüyor (500gr- 1kg)
+user dataları çekerken hata aldım. finalde dönüp bakacağım.
+uygulamada cartUniti değiştirince veritabanında değişmiyor ona da bakacağım.

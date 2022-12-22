@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/home_widgets/counter.dart';
-import 'package:food_app_ytm/widgets/home_widgets/product_unit.dart';
 import 'package:food_app_ytm/widgets/home_widgets/single_product.dart';
 
 class SingleItemReview extends StatefulWidget {

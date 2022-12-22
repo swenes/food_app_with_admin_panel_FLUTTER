@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class OrderItem extends StatelessWidget {
   late bool isTrue;
 
@@ -29,7 +30,7 @@ class OrderItem extends StatelessWidget {
           ),
         ],
       ),
-      subtitle: Text('5'),
+      subtitle: const Text('5'),
     );
   }
 }

@@ -65,8 +65,6 @@ class _ProductOverivewState extends State<ProductOverivew> {
 
     return Scaffold(
       appBar: AppBar(
-        // ignore: prefer_const_constructors
-
         leading: IconButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(
@@ -76,7 +74,6 @@ class _ProductOverivewState extends State<ProductOverivew> {
               ));
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined)),
-
         title: const Text(
           'Product Overview',
           style: TextStyle(color: Colors.black),
@@ -196,7 +193,7 @@ class _ProductOverivewState extends State<ProductOverivew> {
                         ),
                         Text(
                           '$unitData',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Counter(
                           productUnit: unitData,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/constants.dart';
+
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? labelText;
@@ -12,7 +14,8 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       keyboardType: keyboardType,
       controller: controller,
-      decoration: InputDecoration(labelText: labelText),
+      decoration: InputDecoration(
+          labelText: labelText, labelStyle: Constants.addDeliverTextStyle),
     );
   }
 }

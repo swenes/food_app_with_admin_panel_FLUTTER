@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/providers/review_cart_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../../models/product_model.dart';
 import '../../utils/constants.dart';
 
 class Counter extends StatefulWidget {
@@ -15,6 +13,7 @@ class Counter extends StatefulWidget {
   String productId;
   int productPrice;
   bool isProductOverview;
+  // ignore: prefer_typing_uninitialized_variables
   var productUnit;
   Counter({
     super.key,

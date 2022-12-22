@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/providers/check_out_provider.dart';
+import 'package:food_app_ytm/screens/check_out/google_map/google_map.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -92,30 +93,53 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
               labelText: 'Pincode',
               controller: checkOutProvider.pincode,
             ),
-
             InkWell(
-              onTap: () {},
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Set Location'),
-                  ],
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CustomGoogleMap(),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.blueGrey),
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Center(
+                        child: Text(
+                          'Set Location',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.white,
+                        size: 30,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-            // ignore: prefer_const_constructors
-            Divider(
-              color: Colors.black,
-            ),
             const ListTile(
-              title: Text('Address Type *'),
+              title: Text(
+                'Address Type',
+                style: Constants.addDeliverTextStyle,
+              ),
             ),
             RadioListTile(
-              secondary: Icon(Icons.home_outlined),
+              secondary: const Icon(Icons.home_outlined),
               value: AddressTypes.Home,
               groupValue: myType,
               title: const Text('Home'),
@@ -126,7 +150,7 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
               },
             ),
             RadioListTile(
-              secondary: Icon(Icons.work_history_outlined),
+              secondary: const Icon(Icons.work_history_outlined),
               value: AddressTypes.Work,
               groupValue: myType,
               title: const Text('Work'),
@@ -137,7 +161,7 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
               },
             ),
             RadioListTile(
-              secondary: Icon(Icons.devices_other_outlined),
+              secondary: const Icon(Icons.devices_other_outlined),
               value: AddressTypes.Other,
               groupValue: myType,
               title: const Text('Other'),

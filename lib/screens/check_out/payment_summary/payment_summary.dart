@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/screens/check_out/payment_summary/order_item.dart';
 import 'package:food_app_ytm/utils/constants.dart';
@@ -15,9 +17,9 @@ enum PaymentTypes {
 }
 
 class _PaymentSummaryState extends State<PaymentSummary> {
-  @override
   var myType = PaymentTypes.CreditCart;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
