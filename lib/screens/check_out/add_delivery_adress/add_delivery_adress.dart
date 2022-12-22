@@ -1,10 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:food_app_ytm/main.dart';
+import 'package:food_app_ytm/providers/check_out_provider.dart';
 import 'package:food_app_ytm/utils/constants.dart';
+import 'package:provider/provider.dart';
 
-import '../../widgets/check_out_widgets/custom_text_field.dart';
+import '../../../widgets/check_out_widgets/custom_text_field.dart';
 
 class AddDeliveryAdress extends StatefulWidget {
   const AddDeliveryAdress({super.key});
@@ -23,6 +24,7 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
   var myType = AddressTypes.Home;
   @override
   Widget build(BuildContext context) {
+    CheckOutProvider checkOutProvider = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -33,45 +35,64 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
       bottomNavigationBar: Container(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         height: 48,
-        child: MaterialButton(
-          onPressed: () {},
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          color: Constants.appBarColor,
-          child: const Text(
-            'Add Adress',
-            style: TextStyle(color: Constants.textColorDark),
-          ),
-        ),
+        child: checkOutProvider.isLoading == false
+            ? MaterialButton(
+                onPressed: () {
+                  checkOutProvider.validator(context, myType);
+                },
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                color: Constants.appBarColor,
+                child: const Text(
+                  'Add Adress',
+                  style: TextStyle(color: Constants.textColorDark),
+                ),
+              )
+            : const Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
-            const CustomTextField(
+            CustomTextField(
               labelText: 'First Name',
+              controller: checkOutProvider.firstName,
             ),
-            const CustomTextField(
+            CustomTextField(
+              labelText: 'Last Name',
+              controller: checkOutProvider.lastName,
+            ),
+            CustomTextField(
               labelText: 'Mobile No',
+              controller: checkOutProvider.mobileNo,
             ),
-            const CustomTextField(
+            CustomTextField(
               labelText: 'Alternate Mobile No',
+              controller: checkOutProvider.alternateMobileNo,
             ),
-            const CustomTextField(
+            CustomTextField(
               labelText: 'Society',
+              controller: checkOutProvider.scoiety,
             ),
-            const CustomTextField(
+            CustomTextField(
               labelText: 'Landmark',
+              controller: checkOutProvider.landmark,
             ),
-            const CustomTextField(
+            CustomTextField(
               labelText: 'City',
+              controller: checkOutProvider.city,
             ),
-            const CustomTextField(
+            CustomTextField(
               labelText: 'Area',
+              controller: checkOutProvider.area,
             ),
-            const CustomTextField(
+            CustomTextField(
               labelText: 'Pincode',
+              controller: checkOutProvider.pincode,
             ),
+
             InkWell(
               onTap: () {},
               child: Container(
@@ -94,6 +115,7 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
               title: Text('Address Type *'),
             ),
             RadioListTile(
+              secondary: Icon(Icons.home_outlined),
               value: AddressTypes.Home,
               groupValue: myType,
               title: const Text('Home'),
@@ -104,6 +126,7 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
               },
             ),
             RadioListTile(
+              secondary: Icon(Icons.work_history_outlined),
               value: AddressTypes.Work,
               groupValue: myType,
               title: const Text('Work'),
@@ -114,6 +137,7 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
               },
             ),
             RadioListTile(
+              secondary: Icon(Icons.devices_other_outlined),
               value: AddressTypes.Other,
               groupValue: myType,
               title: const Text('Other'),

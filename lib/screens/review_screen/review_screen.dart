@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/models/review_cart_model.dart';
 import 'package:food_app_ytm/providers/review_cart_provider.dart';
-import 'package:food_app_ytm/screens/check_out/delivery_details.dart';
+import 'package:food_app_ytm/screens/check_out/deliver_details/delivery_details.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/review_widgets/single_item_review.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,7 @@ class ReviewScreen extends StatelessWidget {
             }
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const DeliveryDetails(),
+                builder: (context) => DeliveryDetails(),
               ),
             );
           },

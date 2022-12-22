@@ -47,7 +47,7 @@ class SingleDeliveryItem extends StatelessWidget {
             ],
           ),
           leading: const Padding(
-            padding: EdgeInsets.only(top: 15.0),
+            padding: EdgeInsets.only(top: 20.0),
             child: CircleAvatar(
               radius: 8,
               backgroundColor: Constants.appBarColor,
