@@ -3,30 +3,40 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class OrderItem extends StatelessWidget {
   late bool isTrue;
-
-  OrderItem({super.key});
+  final String productName;
+  final int productPrice;
+  final int productQuantity;
+  final int productUnit;
+  final String productImage;
+  OrderItem(
+      {super.key,
+      required this.productName,
+      required this.productPrice,
+      required this.productQuantity,
+      required this.productUnit,
+      required this.productImage});
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Image.network(
-        'https://w7.pngwing.com/pngs/653/224/png-transparent-blackberry-pie-fruit-blackberry-frutti-di-bosco-food-fruit-nut.png',
+        productImage,
         width: 60,
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Food Name',
+            productName,
             style: TextStyle(color: Colors.grey[600]),
           ),
           Text(
-            '50 Gram',
+            productUnit.toString(),
             style: TextStyle(
               color: Colors.grey[600],
             ),
           ),
-          const Text(
-            '\$30',
+          Text(
+            '\$$productPrice',
           ),
         ],
       ),

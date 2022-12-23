@@ -1,11 +1,18 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:food_app_ytm/models/deliver_adress_model.dart';
+import 'package:food_app_ytm/providers/review_cart_provider.dart';
 import 'package:food_app_ytm/screens/check_out/payment_summary/order_item.dart';
 import 'package:food_app_ytm/utils/constants.dart';
+import 'package:provider/provider.dart';
+
+import '../deliver_details/single_delivery_item.dart';
 
 class PaymentSummary extends StatefulWidget {
-  const PaymentSummary({super.key});
+  final DeliveryAddressModel deliveryAdressList;
+
+  const PaymentSummary({super.key, required this.deliveryAdressList});
 
   @override
   State<PaymentSummary> createState() => _PaymentSummaryState();
@@ -21,8 +28,24 @@ class _PaymentSummaryState extends State<PaymentSummary> {
 
   @override
   Widget build(BuildContext context) {
+    ReviewCartProvider reviewCartProvider = Provider.of(context);
+    reviewCartProvider.getReviewCartData();
+
+    double discountPercent = 30; //indirim yüzdesi
+    double shippingCharge = 4; //kargo
+    double totalPriceinReviewCart =
+        reviewCartProvider.getTotalPrice(); //hiç bir şey indirlmemiş fiyat
+    double discountValue = (totalPriceinReviewCart * discountPercent) /
+        100; //yüzde 30 uygulanmış hali
+    double totalPriceActual = (totalPriceinReviewCart - discountValue) +
+        shippingCharge; //en son ödenecek fiyat
+    // double discountAmount = totalPriceinReviewCart * (30) / 100;
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.shopping_bag_outlined))
+        ],
         title: const Text(
           'Payment Summary',
           style: TextStyle(color: Constants.textColorDark),
@@ -31,11 +54,16 @@ class _PaymentSummaryState extends State<PaymentSummary> {
       bottomNavigationBar: ListTile(
         title: const Text(
           'Total Amount',
-          style: TextStyle(fontSize: 17),
+          style: TextStyle(
+            fontSize: 17,
+          ),
         ),
         subtitle: Text(
-          '\$ 160',
-          style: TextStyle(fontSize: 20, color: Colors.green.shade900),
+          '\$${totalPriceActual.toStringAsFixed(2)}',
+          style: TextStyle(
+              fontSize: 20,
+              color: Colors.green.shade800,
+              fontWeight: FontWeight.bold),
         ),
         trailing: SizedBox(
           width: 160,
@@ -52,65 +80,109 @@ class _PaymentSummaryState extends State<PaymentSummary> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 15),
         child: ListView.builder(
           itemCount: 1,
           itemBuilder: (context, index) {
             return Column(
               children: [
-                const ListTile(
-                  title: Text('First name and last name'),
-                  subtitle: Text('Adres bilgisi'),
+                SingleDeliveryItem(
+                  //burayı liste olarak hallet. add adres dediğinde update yapıyor liste olarak vermiyor.
+                  firstName: widget.deliveryAdressList.firstName,
+                  lastName: widget.deliveryAdressList.lastName,
+                  number: widget.deliveryAdressList.mobileNo,
+                  adress: widget.deliveryAdressList.adress,
+                  city: widget.deliveryAdressList.city,
+                  town: widget.deliveryAdressList.town,
+                  adressType: widget.deliveryAdressList.addressType,
                 ),
-                const Divider(),
-                ExpansionTile(title: const Text('Order Items 7'), children: [
-                  OrderItem(),
-                  OrderItem(),
-                  OrderItem(),
-                  OrderItem(),
-                  OrderItem(),
-                  OrderItem(),
-                  OrderItem(),
-                  OrderItem(),
-                  OrderItem(),
-                ]),
-                const Divider(),
-                const ListTile(
+                const Divider(
+                  color: Colors.green,
+                  thickness: 2,
+                ),
+                ExpansionTile(
+                  leading: const Icon(
+                    Icons.shopping_bag_outlined,
+                    size: 30,
+                    color: Constants.appBarColor,
+                  ),
+                  trailing: const Icon(
+                    Icons.arrow_downward_outlined,
+                    size: 30,
+                    color: Constants.appBarColor,
+                  ),
+                  subtitle: const Text(
+                    'You can tap here to see items',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 12, color: Constants.textColor),
+                  ),
+                  title: Text(
+                    'Order Items ${reviewCartProvider.getReviewCartDataList.length}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  children: reviewCartProvider.getReviewCartDataList.map((e) {
+                    return OrderItem(
+                      productImage: e.cartImage,
+                      productName: e.cartName,
+                      productPrice: e.cartPrice,
+                      productQuantity: e.cartQuantity,
+                      productUnit: e.cartQuantity,
+                    );
+                  }).toList(),
+                ),
+                const Divider(
+                  thickness: 2,
+                  color: Colors.green,
+                ),
+                ListTile(
                   minVerticalPadding: 5,
-                  leading: Text(
+                  leading: const Text(
                     'Sub Total',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                   trailing: Text(
-                    '\$200',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    '\$ $totalPriceinReviewCart',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                 ),
-                const ListTile(
+                ListTile(
                   minVerticalPadding: 5,
-                  leading: Text(
-                    'Shipping Charge',
-                    style: TextStyle(color: Constants.textColor),
-                  ),
-                  trailing: Text(
-                    '\$0',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const ListTile(
-                  minVerticalPadding: 5,
-                  leading: Text(
+                  leading: const Text(
                     'Compen Discount',
-                    style: TextStyle(color: Constants.textColor),
+                    style: TextStyle(color: Constants.textColor, fontSize: 17),
                   ),
                   trailing: Text(
-                    '\$10',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    '- \$${(discountValue.toStringAsFixed(2))}',
+                    style: const TextStyle(
+                        color: Constants.textColor, fontSize: 17),
                   ),
                 ),
-                const Divider(),
+                ListTile(
+                  minVerticalPadding: 5,
+                  leading: const Text(
+                    'Shipping Charge',
+                    style: TextStyle(
+                      color: Constants.textColor,
+                      fontSize: 17,
+                    ),
+                  ),
+                  trailing: Text(
+                    '+ \$$shippingCharge',
+                    style: const TextStyle(
+                        color: Constants.textColor, fontSize: 17),
+                  ),
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
                 const ListTile(
-                  leading: Text('Payment Options'),
+                  leading: Text(
+                    'Payment Options',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  ),
                 ),
                 RadioListTile(
                   secondary: const Icon(Icons.money_outlined),

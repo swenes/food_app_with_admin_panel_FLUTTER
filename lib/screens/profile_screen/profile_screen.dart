@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/utils/constants.dart';
+import 'package:food_app_ytm/widgets/home_widgets/drawer_side.dart';
 
 import '../../widgets/profile_widgets/list_tile_profilewidget.dart';
 
@@ -17,16 +18,35 @@ class ProfileScreen extends StatelessWidget {
         ),
         elevation: 0.0,
       ),
-      // drawer: const DrawerSide(),
+      drawer: const DrawerSide(),
       body: Stack(children: [
         Column(
           children: [
-            Container(
-              height: 100,
-              color: Constants.appBarColor,
+            const SizedBox(
+              height: 51,
             ),
             Container(
-              height: 579,
+              //sarı container
+              height: 100,
+              color: Constants.appBarColor,
+              child: Text(
+                'VEGI',
+                style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Constants.scaffoldBG,
+                    shadows: [
+                      BoxShadow(
+                        blurRadius: 10,
+                        color: Colors.green.shade500,
+                        offset: const Offset(-10, 10),
+                      ),
+                    ]),
+              ),
+            ),
+            Container(
+              //gri container
+              height: 600,
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Constants.scaffoldBG,
@@ -35,7 +55,8 @@ class ProfileScreen extends StatelessWidget {
                   topRight: Radius.circular(30),
                 ),
               ),
-              child: ListView(
+              child: Column(
+                //sadece gri konteynırı kaplıyor listview.
                 children: [
                   Container(
                     padding: const EdgeInsets.only(right: 20, top: 30),
@@ -109,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
 
   Padding _buildVegiStack() {
     return const Padding(
-      padding: EdgeInsets.only(top: 70.0, left: 15),
+      padding: EdgeInsets.only(top: 121.0, left: 16),
       child: CircleAvatar(
         radius: 50,
         backgroundColor: Constants.appBarColor,

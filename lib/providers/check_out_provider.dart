@@ -2,41 +2,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_app_ytm/models/deliver_adress_model.dart';
 import 'package:location/location.dart';
 
 class CheckOutProvider with ChangeNotifier {
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
+  TextEditingController adress = TextEditingController();
   TextEditingController mobileNo = TextEditingController();
-  TextEditingController alternateMobileNo = TextEditingController();
-  TextEditingController scoiety = TextEditingController();
-  TextEditingController landmark = TextEditingController();
   TextEditingController city = TextEditingController();
-  TextEditingController area = TextEditingController();
-  TextEditingController pincode = TextEditingController();
+  TextEditingController town = TextEditingController();
 
   late LocationData setLocation;
   bool isLoading = false;
 
   void validator(context, myType) async {
     if (firstName.text.isEmpty) {
-      Fluttertoast.showToast(msg: "firstname is empty");
+      Fluttertoast.showToast(msg: "First name is empty");
     } else if (lastName.text.isEmpty) {
-      Fluttertoast.showToast(msg: "lastname is empty");
+      Fluttertoast.showToast(msg: "Last name is empty");
+    } else if (adress.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Adress is empty");
     } else if (mobileNo.text.isEmpty) {
-      Fluttertoast.showToast(msg: "mobileNo is empty");
-    } else if (alternateMobileNo.text.isEmpty) {
-      Fluttertoast.showToast(msg: "alternateMobileNo is empty");
-    } else if (scoiety.text.isEmpty) {
-      Fluttertoast.showToast(msg: "scoiety is empty");
-    } else if (landmark.text.isEmpty) {
-      Fluttertoast.showToast(msg: "landmark is empty");
+      Fluttertoast.showToast(msg: "Mobile no is empty");
     } else if (city.text.isEmpty) {
-      Fluttertoast.showToast(msg: "city is empty");
-    } else if (area.text.isEmpty) {
-      Fluttertoast.showToast(msg: "aera is empty");
-    } else if (pincode.text.isEmpty) {
-      Fluttertoast.showToast(msg: "pincode is empty");
+      Fluttertoast.showToast(msg: "City is empty");
     } else if (setLocation.latitude == null) {
       Fluttertoast.showToast(msg: "Set location is empty");
     } else {
@@ -45,27 +35,64 @@ class CheckOutProvider with ChangeNotifier {
       await FirebaseFirestore.instance
           .collection("AddDeliverAddress")
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({
-        "firstname": firstName.text,
-        "lastname": lastName.text,
+          .update({
+        "firstName": firstName.text,
+        "lastName": lastName.text,
+        "adress": adress.text,
         "mobileNo": mobileNo.text,
-        "alternateMobileNo": alternateMobileNo.text,
-        "scoiety": scoiety.text,
-        "landmark": landmark.text,
         "city": city.text,
-        "aera": area.text,
-        "pincode": pincode.text,
+        "town": town.text,
         "addressType": myType.toString(),
         "latitude": setLocation.latitude,
         "longitude": setLocation.longitude
       }).then((value) async {
         isLoading = false;
+
         notifyListeners();
-        await Fluttertoast.showToast(msg: "Add your deliver address");
+        await Fluttertoast.showToast(msg: "Added your deliver address");
         Navigator.of(context).pop();
         notifyListeners();
       });
       notifyListeners();
+      clearTextFields();
     }
+  }
+
+  List<DeliveryAddressModel> deliveryAdressList = [];
+  getDeliveryAdressData() async {
+    List<DeliveryAddressModel> newList = [];
+    DeliveryAddressModel? deliveryAddressModel;
+    DocumentSnapshot data = await FirebaseFirestore.instance
+        .collection("AddDeliverAddress")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    if (data.exists) {
+      deliveryAddressModel = DeliveryAddressModel(
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          adress: data.get('adress'),
+          mobileNo: data.get('mobileNo'),
+          city: data.get('city'),
+          town: data.get('town'),
+          addressType: data.get('addressType'));
+      newList.add(deliveryAddressModel);
+      notifyListeners();
+    }
+    deliveryAdressList = newList;
+    notifyListeners();
+  }
+
+  List<DeliveryAddressModel> get getDeliverAddressList {
+    return deliveryAdressList;
+  }
+
+  void clearTextFields() {
+    firstName.clear();
+    lastName.clear();
+    adress.clear();
+    mobileNo.clear();
+    city.clear();
+    town.clear();
   }
 }

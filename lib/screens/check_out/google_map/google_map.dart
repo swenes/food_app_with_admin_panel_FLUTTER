@@ -21,16 +21,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Widget build(BuildContext context) {
     CheckOutProvider checkoutProvider = Provider.of(context);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: const Text(
-          'Google Maps',
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Colors.transparent,
-      ),
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Stack(
@@ -68,7 +60,28 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                     child: const Text("Set Location"),
                   ),
                 ),
-              )
+              ),
+              Positioned(
+                left: 10,
+                top: 15,
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+                    const SizedBox(width: 10),
+                    const Text(
+                      'Google Maps',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),

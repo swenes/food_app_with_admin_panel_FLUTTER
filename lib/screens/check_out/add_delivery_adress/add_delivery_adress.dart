@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/providers/check_out_provider.dart';
 import 'package:food_app_ytm/screens/check_out/google_map/google_map.dart';
@@ -30,7 +31,7 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
       appBar: AppBar(
         title: const Text(
           'Add Delivery Address',
-          style: TextStyle(fontSize: 18, color: Constants.textColorDark),
+          style: TextStyle(fontSize: 20, color: Constants.textColorDark),
         ),
       ),
       bottomNavigationBar: Container(
@@ -39,15 +40,13 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
         child: checkOutProvider.isLoading == false
             ? MaterialButton(
                 onPressed: () {
-                  checkOutProvider.validator(context, myType);
+                  checkOutProvider.validator(context, describeEnum(myType));
+                  //checkOutProvider.getDeliverAdressData();
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 color: Constants.appBarColor,
-                child: const Text(
-                  'Add Adress',
-                  style: TextStyle(color: Constants.textColorDark),
-                ),
+                child: const Text('Add New Adress'),
               )
             : const Center(
                 child: CircularProgressIndicator(),
@@ -66,33 +65,22 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
               controller: checkOutProvider.lastName,
             ),
             CustomTextField(
+              labelText: 'Adress',
+              controller: checkOutProvider.adress,
+            ),
+            CustomTextField(
               labelText: 'Mobile No',
               controller: checkOutProvider.mobileNo,
-            ),
-            CustomTextField(
-              labelText: 'Alternate Mobile No',
-              controller: checkOutProvider.alternateMobileNo,
-            ),
-            CustomTextField(
-              labelText: 'Society',
-              controller: checkOutProvider.scoiety,
-            ),
-            CustomTextField(
-              labelText: 'Landmark',
-              controller: checkOutProvider.landmark,
             ),
             CustomTextField(
               labelText: 'City',
               controller: checkOutProvider.city,
             ),
             CustomTextField(
-              labelText: 'Area',
-              controller: checkOutProvider.area,
+              labelText: 'Town',
+              controller: checkOutProvider.town,
             ),
-            CustomTextField(
-              labelText: 'Pincode',
-              controller: checkOutProvider.pincode,
-            ),
+            const SizedBox(height: 20),
             InkWell(
               onTap: () {
                 Navigator.of(context).push(
@@ -132,9 +120,11 @@ class _AddDeliveryAdressState extends State<AddDeliveryAdress> {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
             const ListTile(
               title: Text(
                 'Address Type',
+                textAlign: TextAlign.center,
                 style: Constants.addDeliverTextStyle,
               ),
             ),

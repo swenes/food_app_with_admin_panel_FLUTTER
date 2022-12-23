@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 
 class SingleDeliveryItem extends StatelessWidget {
-  final String title;
+  final String firstName;
+  final String lastName;
   final String adress;
   final String number;
   final String adressType;
   final String city;
   final String town;
-  const SingleDeliveryItem(
-      {super.key,
-      required this.title,
-      required this.adress,
-      required this.number,
-      required this.adressType,
-      required this.city,
-      required this.town});
+  const SingleDeliveryItem({
+    super.key,
+    required this.firstName,
+    required this.lastName,
+    required this.adress,
+    required this.number,
+    required this.city,
+    required this.town,
+    required this.adressType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class SingleDeliveryItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                title,
+                '$firstName $lastName',
                 style: const TextStyle(fontWeight: FontWeight.w500),
               ), // enes
               Container(
@@ -67,7 +70,7 @@ class SingleDeliveryItem extends StatelessWidget {
           ),
         ),
         const Divider(
-          height: 35,
+          height: 10,
         )
       ],
     );

@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_ytm/models/deliver_adress_model.dart';
+import 'package:food_app_ytm/providers/check_out_provider.dart';
 import 'package:food_app_ytm/screens/check_out/add_delivery_adress/add_delivery_adress.dart';
 import 'package:food_app_ytm/screens/check_out/deliver_details/single_delivery_item.dart';
 import 'package:food_app_ytm/screens/check_out/payment_summary/payment_summary.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/constants.dart';
 
 // ignore: must_be_immutable
-class DeliveryDetails extends StatelessWidget {
-  List<Widget> adresses = [
-    const SingleDeliveryItem(
-        title: 'Enes Ev',
-        adress: 'Atalar Mahallesi Abdurrahmangazi Sk. No: 6  ',
-        city: 'Kocaeli',
-        town: 'İzmit',
-        number: "5436234972",
-        adressType: "Evim"),
-    const SingleDeliveryItem(
-        title: 'Ahmet Kabaklı KYK',
-        adress: 'Çaydaçıra Mahallesi Anguzu Baba SK. No: 17 ',
-        city: 'Elazığ',
-        town: 'Çaydaçıra',
-        number: "5436234972",
-        adressType: "Yurt")
-  ];
+class DeliveryDetails extends StatefulWidget {
+  const DeliveryDetails({super.key});
 
-  DeliveryDetails({super.key});
+  @override
+  State<DeliveryDetails> createState() => _DeliveryDetailsState();
+}
+
+class _DeliveryDetailsState extends State<DeliveryDetails> {
+  late DeliveryAddressModel value;
   @override
   Widget build(BuildContext context) {
+    CheckOutProvider deliveryAressProvier = Provider.of(context);
+    deliveryAressProvier.getDeliveryAdressData();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -51,7 +46,7 @@ class DeliveryDetails extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: MaterialButton(
           onPressed: () {
-            adresses.isEmpty
+            deliveryAressProvier.getDeliverAddressList.isEmpty
                 ? Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const AddDeliveryAdress(),
@@ -59,14 +54,16 @@ class DeliveryDetails extends StatelessWidget {
                   )
                 : Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const PaymentSummary(),
+                      builder: (context) => PaymentSummary(
+                        deliveryAdressList: value,
+                      ),
                     ),
                   );
           },
           color: Constants.appBarColor,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          child: adresses.isEmpty
+          child: deliveryAressProvier.getDeliverAddressList.isEmpty
               ? const Text('Add New Adress')
               : const Text(
                   'Payment Summary',
@@ -77,7 +74,7 @@ class DeliveryDetails extends StatelessWidget {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10, top: 30),
+            padding: const EdgeInsets.only(top: 30),
             child: ListTile(
               title: const Text(
                 'Deliver To',
@@ -93,26 +90,34 @@ class DeliveryDetails extends StatelessWidget {
             height: 25,
           ),
           Column(
-            children: [getAdresses(adresses) ?? emptyAdressContainer()],
-          )
+            children: deliveryAressProvier.getDeliverAddressList
+                .map<SingleDeliveryItem>(
+              (e) {
+                setState(() {
+                  value = e;
+                });
+                return SingleDeliveryItem(
+                  //burayı liste olarak hallet. add adres dediğinde update yapıyor liste olarak vermiyor.
+                  firstName: e.firstName,
+                  lastName: e.lastName,
+                  number: e.mobileNo,
+                  adress: e.adress,
+                  city: e.city,
+                  town: e.town,
+                  adressType: e.addressType,
+                );
+              },
+            ).toList(),
+          ),
         ],
       ),
     );
   }
 
-  getAdresses(List<Widget> adresses) {
-    for (var element in adresses) {
-      return element;
-    }
-  }
-
-  Container emptyAdressContainer() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 250),
-      child: const Text(
-        'You have to add a new address',
-        style: TextStyle(fontSize: 18),
-      ),
+  Center emptyAdressContainer() {
+    return const Center(
+      child: Text('You have to add a new address',
+          style: TextStyle(fontSize: 18, color: Constants.textColor)),
     );
   }
 }
