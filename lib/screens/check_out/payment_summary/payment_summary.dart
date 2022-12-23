@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/models/deliver_adress_model.dart';
 import 'package:food_app_ytm/providers/review_cart_provider.dart';
+import 'package:food_app_ytm/screens/check_out/payment_summary/my_google_pay.dart';
 import 'package:food_app_ytm/screens/check_out/payment_summary/order_item.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +69,25 @@ class _PaymentSummaryState extends State<PaymentSummary> {
         trailing: SizedBox(
           width: 160,
           child: MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              if (myType == PaymentTypes.CreditCart) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => MyGooglePay(
+                      total: totalPriceActual,
+                    ),
+                  ),
+                );
+              } else if (myType == PaymentTypes.Cash) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Container(
+                      color: Colors.blue,
+                    ),
+                  ),
+                );
+              }
+            },
             color: Constants.appBarColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -103,11 +122,11 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                 ExpansionTile(
                   leading: const Icon(
                     Icons.shopping_bag_outlined,
-                    size: 30,
+                    size: 28,
                     color: Constants.appBarColor,
                   ),
                   trailing: const Icon(
-                    Icons.arrow_downward_outlined,
+                    Icons.keyboard_double_arrow_down_sharp,
                     size: 30,
                     color: Constants.appBarColor,
                   ),

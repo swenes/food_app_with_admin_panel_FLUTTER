@@ -52,7 +52,7 @@ class ReviewScreen extends StatelessWidget {
             }
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => DeliveryDetails(),
+                builder: (context) => const DeliveryDetails(),
               ),
             );
           },
