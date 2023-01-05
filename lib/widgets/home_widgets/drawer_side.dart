@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_ytm/screens/home_screen/home_screen.dart';
 import 'package:food_app_ytm/screens/profile_screen/profile_screen.dart';
 import 'package:food_app_ytm/screens/review_screen/review_screen.dart';
+import 'package:food_app_ytm/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:food_app_ytm/screens/wish_list_screen/wish_list_screen.dart';
 
 import '../../utils/constants.dart';
@@ -41,7 +42,7 @@ class DrawerSide extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Welcome Guest',
+                        const Text('Enes Aydoğdu',
                             style: TextStyle(fontSize: 18)),
                         const SizedBox(height: 7),
                         SizedBox(
@@ -49,10 +50,20 @@ class DrawerSide extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             style: const ButtonStyle(),
-                            child: const Text(
-                              'Login',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.black),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SignIn(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Log Out',
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
+                              ),
                             ),
                           ),
                         )
@@ -110,7 +121,7 @@ class DrawerSide extends StatelessWidget {
                             color: Constants.textColor),
                       ),
                       const SizedBox(width: 5),
-                      const Text('+905436234972',
+                      const Text('+905437777777',
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,

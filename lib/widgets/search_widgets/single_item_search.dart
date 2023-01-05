@@ -26,7 +26,7 @@ class _SingleItemSearchState extends State<SingleItemSearch> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(width: 0.5),
@@ -58,7 +58,7 @@ class _SingleItemSearchState extends State<SingleItemSearch> {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          '${widget.productPrice}\$/50 Gr',
+                          '${widget.productPrice}₺/100 Gr',
                           style: const TextStyle(
                               color: Constants.textColor,
                               fontWeight: FontWeight.bold),

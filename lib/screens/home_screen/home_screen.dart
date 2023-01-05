@@ -30,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of(context);
-
     return Scaffold(
       backgroundColor: Constants.scaffoldBG,
       drawer: const DrawerSide(),
@@ -84,7 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Row _buildViewAllText(String title, Widget category) {
-    //view all için textbutton koy. void func türünde parametre alsın ontapt'e kullan
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

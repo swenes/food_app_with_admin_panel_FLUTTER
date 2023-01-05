@@ -79,7 +79,7 @@ class _SingleProductsState extends State<SingleProducts> {
                             ),
                           ),
                           Text(
-                            '${widget.productPrice}\$/${unitData ?? firstValue}',
+                            '${widget.productPrice}₺/${unitData ?? firstValue}',
                             style: TextStyle(
                               color: Colors.grey.shade700,
                               fontSize: 13,

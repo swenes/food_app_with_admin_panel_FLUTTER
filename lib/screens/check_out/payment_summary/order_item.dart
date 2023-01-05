@@ -36,7 +36,7 @@ class OrderItem extends StatelessWidget {
             ),
           ),
           Text(
-            '\$$productPrice',
+            '₺$productPrice',
           ),
         ],
       ),

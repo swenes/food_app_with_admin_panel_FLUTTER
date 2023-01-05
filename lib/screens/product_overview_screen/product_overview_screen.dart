@@ -132,16 +132,19 @@ class _ProductOverivewState extends State<ProductOverivew> {
               width: double.infinity,
               child: Column(
                 children: [
-                  ListTile(
-                    title: Text(
-                      widget.productName,
-                      style: const TextStyle(
-                          fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      widget.productPrice.toString(),
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        widget.productName,
+                        style: const TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        '${widget.productPrice.toString()} ₺',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                   Container(
@@ -153,7 +156,7 @@ class _ProductOverivewState extends State<ProductOverivew> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     width: double.infinity,
                     child: const Text(
-                      'Available Options',
+                      'Seçilen Miktar',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20,
@@ -219,16 +222,17 @@ class _ProductOverivewState extends State<ProductOverivew> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
+                    const SizedBox(height: 30),
                     const Text(
-                      'About This Product',
+                      'Ürün Hakkında',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 23,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     const Text(
-                      'Pazarlamada, bir ürün, bir müşterinin arzusunu veya ihtiyacını karşılamak için bir pazara sunulabilecek herhangi bir şeydir. Perakendecilikte ürünler, genellikle "ticari mal" olarak isimlendirilir. Ürün, yetiştirilen, yapılan ve bir yerden diğer bir yere taşınan şekillendirilmiş ticari eşyadır',
+                      "Portakal, sedef otugiller ailesindeki çeşitli narenciye türlerinin bir meyvesidir; öncelikle acı portakal olarak da adlandırılan ilgili Citrus aurantium'dan ayırt etmek için tatlı portakal olarak da adlandırılan citrus sinensis'i ifade eder.",
                       style: TextStyle(
                         fontSize: 16,
                       ),

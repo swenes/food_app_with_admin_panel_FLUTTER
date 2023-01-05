@@ -60,7 +60,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
           ),
         ),
         subtitle: Text(
-          '\$${totalPriceActual.toStringAsFixed(2)}',
+          '₺${totalPriceActual.toStringAsFixed(2)}',
           style: TextStyle(
               fontSize: 20,
               color: Colors.green.shade800,
@@ -162,7 +162,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                   trailing: Text(
-                    '\$ $totalPriceinReviewCart',
+                    '₺ $totalPriceinReviewCart',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 17),
                   ),
@@ -174,7 +174,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                     style: TextStyle(color: Constants.textColor, fontSize: 17),
                   ),
                   trailing: Text(
-                    '- \$${(discountValue.toStringAsFixed(2))}',
+                    '- ₺${(discountValue.toStringAsFixed(2))}',
                     style: const TextStyle(
                         color: Constants.textColor, fontSize: 17),
                   ),
@@ -189,7 +189,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                     ),
                   ),
                   trailing: Text(
-                    '+ \$$shippingCharge',
+                    '+₺$shippingCharge',
                     style: const TextStyle(
                         color: Constants.textColor, fontSize: 17),
                   ),

@@ -41,10 +41,6 @@ class _SignInState extends State<SignIn> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Sign In to Continue',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                  ),
                   Text(
                     'Vegi',
                     style: TextStyle(

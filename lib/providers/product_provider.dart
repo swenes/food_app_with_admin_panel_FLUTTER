@@ -19,7 +19,9 @@ class ProductProvider extends ChangeNotifier {
       productImage: element.get('productImage'),
       productPrice: element.get('productPrice'),
     );
-    searchList.add(productModel);
+    // if (!searchList.contains(productModel)) {
+    //   searchList.add(productModel);
+    // }
   }
 
   ////////////////herbs products////////////////////

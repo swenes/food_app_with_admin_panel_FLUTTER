@@ -60,7 +60,7 @@ class _SingleItemReviewState extends State<SingleItemReview> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        '${widget.productPrice}\$',
+                        '${widget.productPrice}₺',
                         style: const TextStyle(
                             color: Constants.textColor,
                             fontSize: 15,

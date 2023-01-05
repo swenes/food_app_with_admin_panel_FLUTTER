@@ -20,7 +20,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -42,22 +41,23 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-          theme: ThemeData(
-              primaryColor: Constants.appBarColor,
-              appBarTheme: const AppBarTheme(
-                  backgroundColor: Constants.appBarColor,
-                  iconTheme: IconThemeData(color: Colors.black)),
-              scaffoldBackgroundColor: Constants.scaffoldBG),
-          debugShowCheckedModeBanner: false,
-          home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return const HomeScreen();
-              }
-              return const SignIn();
-            },
-          )),
+        theme: ThemeData(
+            primaryColor: Constants.appBarColor,
+            appBarTheme: const AppBarTheme(
+                backgroundColor: Constants.appBarColor,
+                iconTheme: IconThemeData(color: Colors.black)),
+            scaffoldBackgroundColor: Constants.scaffoldBG),
+        debugShowCheckedModeBanner: false,
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return const HomeScreen();
+            }
+            return const SignIn();
+          },
+        ),
+      ),
     );
   }
 }

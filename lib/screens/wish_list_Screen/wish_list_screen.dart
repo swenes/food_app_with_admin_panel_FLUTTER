@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_ytm/models/product_model.dart';
+import 'package:food_app_ytm/providers/review_cart_provider.dart';
 import 'package:food_app_ytm/providers/wish_list_provider.dart';
 import 'package:food_app_ytm/utils/constants.dart';
 import 'package:food_app_ytm/widgets/review_widgets/single_item_review.dart';
@@ -14,7 +15,6 @@ class WishListScreen extends StatefulWidget {
 
 class _WishListScreenState extends State<WishListScreen> {
   late WishListProvider wishListProvider;
-
   showAlertDialog(BuildContext context, ProductModel delete) {
     // set up the buttons
     Widget cancelButton = TextButton(
@@ -53,8 +53,8 @@ class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
     wishListProvider = Provider.of(context);
+    ReviewCartProvider reviewCartProvider = ReviewCartProvider();
     wishListProvider.getWishtListData();
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -66,7 +66,7 @@ class _WishListScreenState extends State<WishListScreen> {
       bottomNavigationBar: ListTile(
         title: const Text('Total Amount'),
         subtitle: Text(
-          '\$170.00',
+          '${reviewCartProvider.getTotalPrice().toString()} ₺',
           style: TextStyle(color: Colors.green.shade900),
         ),
         trailing: MaterialButton(
