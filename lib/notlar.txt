@@ -2,4 +2,4 @@ uygulama ilk açıldığında cartUnit null dönüyor (500gr- 1kg)
 user dataları çekerken hata aldım. finalde dönüp bakacağım.
 uygulamada cartUniti değiştirince veritabanında değişmiyor ona da bakacağım.
 adres ekleyince update ediyor yeni adres gelmiyor ona da bakacağım.
-product overview güzelleştirmen lazım available optionsla oyna
+product overview güzelleştirmen lazım available optionsla oyna.
