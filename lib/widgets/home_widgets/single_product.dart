@@ -94,30 +94,29 @@ class _SingleProductsState extends State<SingleProducts> {
                                 ProductUnit(
                                     onTap: () {
                                       showModalBottomSheet(
-                                        // debugta parent widget kullanımı hatası veriyor halledilecek.
                                         context: context,
                                         builder: (context) {
-                                          return Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: widget
-                                                .productUnit.productUnit
-                                                .map<Widget>((data) {
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  vertical: 15,
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                        setState(() {
-                                                          unitData = data;
-                                                        });
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
-                                                      child: Expanded(
+                                          return SizedBox(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: widget
+                                                  .productUnit.productUnit
+                                                  .map<Widget>((data) {
+                                                return Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    vertical: 15,
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () async {
+                                                          setState(() {
+                                                            unitData = data;
+                                                          });
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
                                                         child: SizedBox(
                                                           width:
                                                               double.infinity,
@@ -133,11 +132,11 @@ class _SingleProductsState extends State<SingleProducts> {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            }).toList(),
+                                                    ],
+                                                  ),
+                                                );
+                                              }).toList(),
+                                            ),
                                           );
                                         },
                                       );

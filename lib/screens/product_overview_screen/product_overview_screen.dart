@@ -18,13 +18,14 @@ class ProductOverivew extends StatefulWidget {
   final String productImage;
   final String productId;
   final int productPrice;
-
+  final List<dynamic> productUnit;
   const ProductOverivew({
     super.key,
     required this.productName,
     required this.productImage,
     required this.productPrice,
     required this.productId,
+    required this.productUnit,
   });
 
   @override
@@ -94,6 +95,7 @@ class _ProductOverivewState extends State<ProductOverivew> {
               });
               if (wishListBool == true) {
                 wishListProvider.addWishListData(
+                  wishListProductUnit: widget.productUnit,
                   wishListId: widget.productId,
                   wishListImage: widget.productImage,
                   wishListName: widget.productName,

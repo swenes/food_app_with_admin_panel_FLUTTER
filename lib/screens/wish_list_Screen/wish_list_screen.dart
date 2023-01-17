@@ -34,7 +34,7 @@ class _WishListScreenState extends State<WishListScreen> {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: const Text("WishList Product"),
-      content: const Text("Are you devete on wishList Product?"),
+      content: const Text("Favorilerinden kaldırmak istiyor musun?"),
       actions: [
         cancelButton,
         continueButton,
@@ -61,22 +61,6 @@ class _WishListScreenState extends State<WishListScreen> {
         title: const Text(
           'Wish List',
           style: TextStyle(color: Constants.textColorDark),
-        ),
-      ),
-      bottomNavigationBar: ListTile(
-        title: const Text('Total Amount'),
-        subtitle: Text(
-          '${reviewCartProvider.getTotalPrice().toString()} ₺',
-          style: TextStyle(color: Colors.green.shade900),
-        ),
-        trailing: MaterialButton(
-          minWidth: 160,
-          onPressed: () {},
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          color: Constants.appBarColor,
-          child: const Text('Submit'),
         ),
       ),
       body: ListView.builder(

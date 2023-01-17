@@ -19,86 +19,81 @@ class ProfileScreen extends StatelessWidget {
         elevation: 0.0,
       ),
       drawer: const DrawerSide(),
-      body: ListView(
-        children: [
-          Stack(children: [
-            Column(
-              children: [
-                const SizedBox(
-                  height: 51,
-                ),
-                Container(
-                  //sarı container
-                  height: 100,
-                  color: Constants.appBarColor,
-                  child: Text(
-                    'VEGI',
-                    style: TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        color: Constants.scaffoldBG,
-                        shadows: [
-                          BoxShadow(
-                            blurRadius: 10,
-                            color: Colors.green.shade500,
-                            offset: const Offset(-10, 10),
-                          ),
-                        ]),
-                  ),
-                ),
-                Container(
-                  //gri container
-                  height: 600,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
+      body: Stack(children: [
+        Column(
+          children: [
+            const SizedBox(
+              height: 51,
+            ),
+            Container(
+              //sarı container
+              height: 100,
+              color: Constants.appBarColor,
+              child: Text(
+                'VEGI',
+                style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
                     color: Constants.scaffoldBG,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
+                    shadows: [
+                      BoxShadow(
+                        blurRadius: 10,
+                        color: Colors.green.shade500,
+                        offset: const Offset(-10, 10),
+                      ),
+                    ]),
+              ),
+            ),
+            Container(
+              //gri container
+              height: 617,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Constants.scaffoldBG,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                //sadece gri konteynırı kaplıyor listview.
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(right: 20, top: 30),
+                    height: 90,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildProfileInfoText(),
+                        const SizedBox(width: 10),
+                        _buildEditBtn(),
+                      ],
                     ),
                   ),
-                  child: Column(
-                    //sadece gri konteynırı kaplıyor listview.
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(right: 20, top: 30),
-                        height: 90,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildProfileInfoText(),
-                            const SizedBox(width: 10),
-                            _buildEditBtn(),
-                          ],
-                        ),
-                      ),
-                      listTileProfile(
-                          icon: Icons.shopping_bag_outlined,
-                          title: 'My Orders'),
-                      listTileProfile(
-                          icon: Icons.location_on_outlined,
-                          title: 'My Delivery Adress'),
-                      listTileProfile(
-                          icon: Icons.person_outline, title: 'Refer A Friend'),
-                      listTileProfile(
-                          icon: Icons.file_copy_outlined,
-                          title: 'Terms & Conditions '),
-                      listTileProfile(
-                          icon: Icons.policy_outlined, title: 'Privacy Policy'),
-                      listTileProfile(
-                          icon: Icons.addchart_outlined, title: 'About'),
-                      listTileProfile(
-                          icon: Icons.logout_outlined, title: 'Log Out'),
-                    ],
-                  ),
-                ),
-              ],
+                  listTileProfile(
+                      icon: Icons.shopping_bag_outlined, title: 'My Orders'),
+                  listTileProfile(
+                      icon: Icons.location_on_outlined,
+                      title: 'My Delivery Adress'),
+                  listTileProfile(
+                      icon: Icons.person_outline, title: 'Refer A Friend'),
+                  listTileProfile(
+                      icon: Icons.file_copy_outlined,
+                      title: 'Terms & Conditions '),
+                  listTileProfile(
+                      icon: Icons.policy_outlined, title: 'Privacy Policy'),
+                  listTileProfile(
+                      icon: Icons.addchart_outlined, title: 'About'),
+                  listTileProfile(
+                      icon: Icons.logout_outlined, title: 'Log Out'),
+                ],
+              ),
             ),
-            _buildVegiStack(),
-          ]),
-        ],
-      ),
+          ],
+        ),
+        _buildVegiStack(),
+      ]),
     );
   }
 

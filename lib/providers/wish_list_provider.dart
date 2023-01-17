@@ -11,6 +11,7 @@ class WishListProvider with ChangeNotifier {
     required var wishListPrice,
     required String wishListImage,
     required int wishListQuantity,
+    required List<dynamic> wishListProductUnit,
   }) {
     FirebaseFirestore.instance
         .collection("WishList")
@@ -23,6 +24,7 @@ class WishListProvider with ChangeNotifier {
       "wishListImage": wishListImage,
       "wishListPrice": wishListPrice,
       "wishListQuantity": wishListQuantity,
+      "wishListProductUnit": wishListProductUnit,
       "wishList": true,
     });
   }
@@ -41,7 +43,7 @@ class WishListProvider with ChangeNotifier {
       ProductModel productModel = ProductModel(
         productName: element.get("wishListName"),
         productId: element.get("wishListId"),
-        productUnit: element.get('productUnit'),
+        productUnit: element.get('wishListProductUnit'),
         productImage: element.get("wishListImage"),
         productPrice: element.get("wishListPrice"),
         productQuantity: element.get("wishListQuantity"),

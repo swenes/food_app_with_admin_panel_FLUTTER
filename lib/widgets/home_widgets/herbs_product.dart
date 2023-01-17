@@ -29,6 +29,7 @@ class BuildHerbsProduct extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductOverivew(
+                          productUnit: herbsProductData.productUnit,
                           productId: herbsProductData.productId,
                           productName: herbsProductData.productName,
                           productImage: herbsProductData.productImage,
